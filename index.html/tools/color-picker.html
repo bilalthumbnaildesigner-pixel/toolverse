@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Color Picker | ToolVerse</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:600px;
+background:#1e293b;
+padding:40px;
+border-radius:20px;
+box-shadow:0 20px 60px rgba(0,0,0,.4);
+text-align:center;
+}
+
+h1{
+margin-bottom:30px;
+}
+
+.preview{
+width:180px;
+height:180px;
+margin:20px auto;
+border-radius:20px;
+border:4px solid white;
+background:#2563eb;
+}
+
+input[type=color]{
+width:100%;
+height:70px;
+border:none;
+border-radius:15px;
+cursor:pointer;
+background:none;
+margin:20px 0;
+}
+
+.info{
+background:#0f172a;
+padding:20px;
+border-radius:15px;
+margin-top:20px;
+}
+
+.info p{
+margin:10px 0;
+font-size:18px;
+}
+
+button{
+width:100%;
+padding:15px;
+margin-top:15px;
+border:none;
+border-radius:10px;
+background:#2563eb;
+color:white;
+font-size:17px;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.back{
+display:inline-block;
+margin-top:25px;
+color:#38bdf8;
+text-decoration:none;
+font-weight:600;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🎨 Color Picker</h1>
+
+<div class="preview" id="preview"></div>
+
+<input type="color" id="picker" value="#2563eb">
+
+<div class="info">
+
+<p>HEX: <strong id="hex">#2563EB</strong></p>
+
+<p>RGB: <strong id="rgb">rgb(37,99,235)</strong></p>
+
+</div>
+
+<button onclick="copyHEX()">Copy HEX</button>
+
+<button onclick="copyRGB()">Copy RGB</button>
+
+<a href="../index.html" class="back">← Back to Home</a>
+
+</div>
+
+<script>
+
+const picker=document.getElementById("picker");
+const preview=document.getElementById("preview");
+const hex=document.getElementById("hex");
+const rgb=document.getElementById("rgb");
+
+picker.addEventListener("input",updateColor);
+
+function updateColor(){
+
+const color=picker.value;
+
+preview.style.background=color;
+
+hex.innerText=color.toUpperCase();
+
+const r=parseInt(color.substr(1,2),16);
+const g=parseInt(color.substr(3,2),16);
+const b=parseInt(color.substr(5,2),16);
+
+rgb.innerText=`rgb(${r}, ${g}, ${b})`;
+
+}
+
+function copyHEX(){
+
+navigator.clipboard.writeText(hex.innerText);
+
+alert("HEX copied!");
+
+}
+
+function copyRGB(){
+
+navigator.clipboard.writeText(rgb.innerText);
+
+alert("RGB copied!");
+
+}
+
+updateColor();
+
+</script>
+
+</body>
+</html>

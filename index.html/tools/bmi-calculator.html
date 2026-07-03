@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BMI Calculator | ToolVerse</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+
+background:#0f172a;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+color:white;
+
+}
+
+.container{
+
+width:100%;
+max-width:600px;
+
+background:#1e293b;
+
+padding:40px;
+
+border-radius:20px;
+
+box-shadow:0 20px 60px rgba(0,0,0,.4);
+
+}
+
+h1{
+
+text-align:center;
+
+margin-bottom:30px;
+
+}
+
+label{
+
+display:block;
+
+margin-top:20px;
+
+margin-bottom:8px;
+
+}
+
+input{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:10px;
+
+font-size:17px;
+
+}
+
+button{
+
+width:100%;
+
+padding:16px;
+
+margin-top:30px;
+
+border:none;
+
+border-radius:10px;
+
+background:#2563eb;
+
+color:white;
+
+font-size:18px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+button:hover{
+
+background:#1d4ed8;
+
+}
+
+.result{
+
+margin-top:30px;
+
+padding:25px;
+
+background:#0f172a;
+
+border-radius:15px;
+
+display:none;
+
+text-align:center;
+
+}
+
+.result h2{
+
+margin-bottom:15px;
+
+color:#38bdf8;
+
+}
+
+.result p{
+
+font-size:20px;
+
+margin:12px 0;
+
+}
+
+.back{
+
+display:inline-block;
+
+margin-top:30px;
+
+text-decoration:none;
+
+color:#38bdf8;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>⚖ BMI Calculator</h1>
+
+<label>Height (cm)</label>
+
+<input
+type="number"
+id="height"
+placeholder="170">
+
+<label>Weight (kg)</label>
+
+<input
+type="number"
+id="weight"
+placeholder="70">
+
+<button onclick="calculateBMI()">
+
+Calculate BMI
+
+</button>
+
+<div class="result" id="result">
+
+<h2>Your Result</h2>
+
+<p id="bmiValue"></p>
+
+<p id="bmiStatus"></p>
+
+</div>
+
+<a class="back" href="../index.html">
+
+← Back to Home
+
+</a>
+
+</div>
+
+<script>
+
+function calculateBMI(){
+
+let h=document.getElementById("height").value/100;
+
+let w=document.getElementById("weight").value;
+
+if(h<=0||w<=0){
+
+alert("Please enter valid values.");
+
+return;
+
+}
+
+let bmi=(w/(h*h)).toFixed(1);
+
+let status="";
+
+if(bmi<18.5){
+
+status="🟡 Underweight";
+
+}
+
+else if(bmi<25){
+
+status="🟢 Healthy Weight";
+
+}
+
+else if(bmi<30){
+
+status="🟠 Overweight";
+
+}
+
+else{
+
+status="🔴 Obese";
+
+}
+
+document.getElementById("bmiValue").innerHTML="BMI : <strong>"+bmi+"</strong>";
+
+document.getElementById("bmiStatus").innerHTML=status;
+
+document.getElementById("result").style.display="block";
+
+}
+
+</script>
+
+</body>
+
+</html>

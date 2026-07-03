@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Word Counter | ToolVerse</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:900px;
+background:#1e293b;
+padding:40px;
+border-radius:20px;
+box-shadow:0 20px 60px rgba(0,0,0,.4);
+}
+
+h1{
+text-align:center;
+margin-bottom:30px;
+}
+
+textarea{
+width:100%;
+height:250px;
+padding:20px;
+font-size:17px;
+border:none;
+border-radius:15px;
+resize:vertical;
+outline:none;
+margin-bottom:30px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:20px;
+}
+
+.card{
+background:#0f172a;
+padding:20px;
+border-radius:15px;
+text-align:center;
+}
+
+.card h2{
+color:#38bdf8;
+margin-bottom:10px;
+}
+
+.back{
+display:inline-block;
+margin-top:30px;
+text-decoration:none;
+color:#38bdf8;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📝 Word Counter</h1>
+
+<textarea id="text" placeholder="Start typing or paste your text here..."></textarea>
+
+<div class="stats">
+
+<div class="card">
+<h2 id="words">0</h2>
+<p>Words</p>
+</div>
+
+<div class="card">
+<h2 id="characters">0</h2>
+<p>Characters</p>
+</div>
+
+<div class="card">
+<h2 id="charactersNoSpaces">0</h2>
+<p>Characters (No Spaces)</p>
+</div>
+
+<div class="card">
+<h2 id="sentences">0</h2>
+<p>Sentences</p>
+</div>
+
+<div class="card">
+<h2 id="paragraphs">0</h2>
+<p>Paragraphs</p>
+</div>
+
+<div class="card">
+<h2 id="reading">0 min</h2>
+<p>Reading Time</p>
+</div>
+
+</div>
+
+<a class="back" href="../index.html">← Back to Home</a>
+
+</div>
+
+<script>
+
+const text=document.getElementById("text");
+
+text.addEventListener("input",update);
+
+function update(){
+
+const value=text.value;
+
+const words=value.trim()===""
+?0
+:value.trim().split(/\s+/).length;
+
+const characters=value.length;
+
+const noSpaces=value.replace(/\s/g,"").length;
+
+const sentences=value.trim()===""
+?0
+:value.split(/[.!?]+/).filter(Boolean).length;
+
+const paragraphs=value.trim()===""
+?0
+:value.split(/\n+/).filter(p=>p.trim()!=="").length;
+
+const reading=Math.max(1,Math.ceil(words/200));
+
+document.getElementById("words").textContent=words;
+
+document.getElementById("characters").textContent=characters;
+
+document.getElementById("charactersNoSpaces").textContent=noSpaces;
+
+document.getElementById("sentences").textContent=sentences;
+
+document.getElementById("paragraphs").textContent=paragraphs;
+
+document.getElementById("reading").textContent=words===0?"0 min":reading+" min";
+
+}
+
+</script>
+
+</body>
+</html>

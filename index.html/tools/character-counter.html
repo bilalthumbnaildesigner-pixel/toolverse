@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Character Counter | ToolVerse</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#0f172a;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+color:white;
+}
+
+.container{
+width:100%;
+max-width:900px;
+background:#1e293b;
+padding:40px;
+border-radius:20px;
+box-shadow:0 20px 60px rgba(0,0,0,.4);
+}
+
+h1{
+text-align:center;
+margin-bottom:30px;
+}
+
+textarea{
+width:100%;
+height:250px;
+padding:20px;
+font-size:17px;
+border:none;
+border-radius:15px;
+resize:vertical;
+outline:none;
+margin-bottom:30px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+}
+
+.card{
+background:#0f172a;
+padding:20px;
+border-radius:15px;
+text-align:center;
+}
+
+.card h2{
+font-size:36px;
+color:#38bdf8;
+margin-bottom:10px;
+}
+
+.card p{
+color:#d1d5db;
+}
+
+.back{
+display:inline-block;
+margin-top:30px;
+color:#38bdf8;
+text-decoration:none;
+font-weight:600;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🔤 Character Counter</h1>
+
+<textarea
+id="text"
+placeholder="Type or paste your text here..."
+></textarea>
+
+<div class="stats">
+
+<div class="card">
+<h2 id="total">0</h2>
+<p>Total Characters</p>
+</div>
+
+<div class="card">
+<h2 id="spaces">0</h2>
+<p>Spaces</p>
+</div>
+
+<div class="card">
+<h2 id="withoutSpaces">0</h2>
+<p>Without Spaces</p>
+</div>
+
+<div class="card">
+<h2 id="lines">0</h2>
+<p>Lines</p>
+</div>
+
+</div>
+
+<a href="../index.html" class="back">← Back to Home</a>
+
+</div>
+
+<script>
+
+const textarea=document.getElementById("text");
+
+textarea.addEventListener("input",countCharacters);
+
+function countCharacters(){
+
+const value=textarea.value;
+
+document.getElementById("total").textContent=value.length;
+
+document.getElementById("spaces").textContent=(value.match(/ /g)||[]).length;
+
+document.getElementById("withoutSpaces").textContent=value.replace(/\s/g,"").length;
+
+document.getElementById("lines").textContent=value===""?0:value.split(/\n/).length;
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unit Converter | ToolVerse</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
+
+body{
+background:#0f172a;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+padding:20px;
+}
+
+.container{
+width:100%;
+max-width:650px;
+background:#1e293b;
+padding:40px;
+border-radius:20px;
+box-shadow:0 20px 60px rgba(0,0,0,.4);
+}
+
+h1{
+text-align:center;
+margin-bottom:30px;
+}
+
+label{
+display:block;
+margin:20px 0 8px;
+}
+
+select,input{
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+font-size:17px;
+}
+
+button{
+width:100%;
+margin-top:25px;
+padding:16px;
+border:none;
+border-radius:10px;
+background:#2563eb;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+margin-top:30px;
+padding:20px;
+background:#0f172a;
+border-radius:15px;
+text-align:center;
+}
+
+.result h2{
+color:#38bdf8;
+font-size:36px;
+}
+
+.back{
+display:inline-block;
+margin-top:25px;
+color:#38bdf8;
+text-decoration:none;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📏 Unit Converter</h1>
+
+<label>Conversion Type</label>
+
+<select id="type">
+<option value="km-miles">Kilometers → Miles</option>
+<option value="miles-km">Miles → Kilometers</option>
+<option value="kg-lbs">Kilograms → Pounds</option>
+<option value="lbs-kg">Pounds → Kilograms</option>
+<option value="c-f">Celsius → Fahrenheit</option>
+<option value="f-c">Fahrenheit → Celsius</option>
+</select>
+
+<label>Enter Value</label>
+
+<input
+type="number"
+id="value"
+placeholder="Enter value">
+
+<button onclick="convertUnit()">
+Convert
+</button>
+
+<div class="result">
+<h2 id="output">0</h2>
+</div>
+
+<a href="../index.html" class="back">
+← Back to Home
+</a>
+
+</div>
+
+<script>
+
+function convertUnit(){
+
+const type=document.getElementById("type").value;
+
+const value=parseFloat(document.getElementById("value").value);
+
+if(isNaN(value)){
+alert("Please enter a value.");
+return;
+}
+
+let result="";
+
+switch(type){
+
+case "km-miles":
+result=(value*0.621371).toFixed(2)+" Miles";
+break;
+
+case "miles-km":
+result=(value/0.621371).toFixed(2)+" KM";
+break;
+
+case "kg-lbs":
+result=(value*2.20462).toFixed(2)+" lbs";
+break;
+
+case "lbs-kg":
+result=(value/2.20462).toFixed(2)+" kg";
+break;
+
+case "c-f":
+result=((value*9/5)+32).toFixed(2)+" °F";
+break;
+
+case "f-c":
+result=((value-32)*5/9).toFixed(2)+" °C";
+break;
+
+}
+
+document.getElementById("output").innerText=result;
+
+}
+
+</script>
+
+</body>
+</html>
